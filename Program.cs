@@ -23,14 +23,45 @@ namespace Assignment_7_4
              */
 
             ParkingSystem parkingLot = new(3, 3, 2);
+            int carType = 1;
+
 
             while (true)
             {
                 Console.Clear();
 
                 Console.WriteLine($"Parking lot spaces: big {parkingLot.BigSpaces}/{parkingLot.BigSpacesCapacity} med {parkingLot.MedSpaces}/{parkingLot.MedSpacesCapacity} small {parkingLot.SmallSpaces}/{parkingLot.SmallSpacesCapacity}");
-                Console.WriteLine("\n\nA big car drives in looking for a parking space");
-                parkingLot.AddCar(1);
+                
+                switch(carType)
+                {
+                    case 1: // big car
+                        Console.WriteLine("\n\nA big car drives in looking for a parking space");
+                        if (parkingLot.AddCar(carType))
+                        {
+                            parkingLot.BigSpaces--;
+                            Console.WriteLine("You directed the car to park in a big parking space");
+                        }
+                        else Console.WriteLine("There are no more big parking spaces available");
+                        break;
+                    case 2: // med car
+                        Console.WriteLine("\n\nA medium car drives in looking for a parking space");
+                        if (parkingLot.AddCar(carType))
+                        {
+                            parkingLot.MedSpaces--;
+                            Console.WriteLine("You directed the car to park in a medium parking space");
+                        }
+                        else Console.WriteLine("There are no more medium parking spaces available");
+                        break;
+                    case 3: // small car
+                        Console.WriteLine("\n\nA small car drives in looking for a parking space");
+                        if (parkingLot.AddCar(carType))
+                        {
+                            parkingLot.SmallSpaces--;
+                            Console.WriteLine("You directed the car to park in a small parking space");
+                        }
+                        else Console.WriteLine("There are no more small parking spaces available");
+                        break;
+                }
 
                 Console.ReadLine();
             }
@@ -84,31 +115,13 @@ namespace Assignment_7_4
             switch (carType)
             {
                 case 1: // big car
-                    if (BigSpaces > 0) 
-                    { 
-                        BigSpaces--;
-                        Console.WriteLine("You directed the car to park in a big parking space");
-                        return true; 
-                    }
-                    else { Console.WriteLine("There are no more big parking spaces available"); }
+                    if (BigSpaces > 0) return true;
                     break;
                 case 2: // med car
-                    if (MedSpaces > 0)
-                    {
-                        MedSpaces--;
-                        Console.WriteLine("You directed the car to park in a medium parking space");
-                        return true;
-                    }
-                    else { Console.WriteLine("There are no more medium parking spaces available"); }
+                    if (MedSpaces > 0) return true;
                     break;
                 case 3: // small car
-                    if (SmallSpaces > 0)
-                    {
-                        SmallSpaces--;
-                        Console.WriteLine("You directed the car to park in a small parking space");
-                        return true;
-                    }
-                    else { Console.WriteLine("There are no more small parking spaces available"); }
+                    if (SmallSpaces > 0) return true;
                     break;
             }
             
